@@ -1,24 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Redirect, Route ,Switch} from 'react-router-dom';
+
+
+import Users from './components/admin/users/Users';
+import ShowUser from './components/admin/users/ShowUser';
+import Roles from './components/admin/roles/Roles';
+import ShowRole from './components/admin/roles/ShowRole';
+import Home from './components/layouts/Home';
+import Layout from './components/layouts/Layout';
+import Register from './components/auth/Register';
+import Login from './components/auth/Login';
+
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Layout>
+    <Switch>
+    <Route exact path='/'  > <Redirect to='/home' /> </Route>
+      <Route exact path='/home' component={Home} />
+      <Route exact path='/users' component={Users} />
+      <Route  path='/users/:id' component={ShowUser} />
+      <Route exact path='/roles' component={Roles} />
+      <Route  path='/roles/:id' component={ShowRole} />
+      <Route  path='/register' component={Register} />
+      <Route  path='/login' component={Login} />
+
+      
+
+    </Switch>
+    </Layout>
   );
 }
 
